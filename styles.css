@@ -101,6 +101,7 @@ ul {
 .nav {
     display: flex;
     gap: 1rem;
+    justify-content: flex-end;
 }
 
 .nav-link {
@@ -615,7 +616,6 @@ ul {
     }
 
     .nav {
-        justify-content: flex-end;
         flex-wrap: nowrap;
         overflow-x: auto;
         gap: 0.6rem;
