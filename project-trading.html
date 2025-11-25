@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Automation | Brason Young</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html">BY</a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="projects.html" class="nav-link active">Projects</a>
+            <a href="experience.html" class="nav-link">Experience</a>
+            <a href="about.html" class="nav-link">About</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <a href="projects.html" class="text-link">← Back to Projects</a>
+
+            <header class="project-detail-header">
+                <div>
+                    <h1 class="page-title">AI-Powered Stock Trading Automation</h1>
+                    <p class="section-subtitle">
+                        An automated trading system that connects to IBKR, interprets public data with AI models,
+                        and executes strategies end-to-end.
+                    </p>
+                </div>
+            </header>
+
+            <div class="project-detail-body">
+                <div class="project-detail-text">
+                    <h2>Overview</h2>
+                    <p>
+                        This project is a stock trading automation platform that integrates Interactive Brokers (IBKR)
+                        with Python, SQL, custom Tkinter UI, APIs, and AI models. The system is designed to move from
+                        raw public information to live trading decisions with minimal manual intervention.
+                    </p>
+                    <p>
+                        For confidentiality, I don’t share the specific mechanics of the strategy or the exact signals
+                        it uses. At a high level, the system ingests public data, runs it through AI models to interpret
+                        the information, develops a trading plan, and then executes orders automatically in a very short
+                        amount of time. The focus of this project is on automation, reliability, and clean architecture.
+                    </p>
+
+                    <h2>High-Level Flow</h2>
+                    <ul class="project-meta-list">
+                        <li>Pulls public market and contextual data via APIs.</li>
+                        <li>Processes and stores data using SQL for structured access and logging.</li>
+                        <li>Uses AI models to interpret information and generate trading insights.</li>
+                        <li>Translates insights into orders and sends them to IBKR via their API.</li>
+                        <li>Monitors positions, basic risk parameters, and status through a custom Tkinter UI.</li>
+                    </ul>
+
+                    <h2>My Role &amp; Responsibilities</h2>
+                    <ul class="project-meta-list">
+                        <li>Designed the overall system architecture (data flow, modules, and integration points).</li>
+                        <li>Implemented the Python backend for API calls, data processing, and automation logic.</li>
+                        <li>Built a custom Tkinter-based UI for monitoring channels, status, and logs.</li>
+                        <li>Set up SQL tables for logging, configuration, and historical analysis.</li>
+                        <li>Integrated AI models to interpret public information and feed signals into the pipeline.</li>
+                    </ul>
+
+                    <h2>Key Skills &amp; Tools</h2>
+                    <ul class="project-meta-list">
+                        <li>Python – core application logic and automation.</li>
+                        <li>IBKR API – order routing, account data, and position management.</li>
+                        <li>SQL – storing configuration, logs, and historical data.</li>
+                        <li>CustomTkinter – building a modern, desktop-style control panel UI.</li>
+                        <li>APIs &amp; AI – integrating external data and AI models for decision support.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-side">
+                    <h2>Screenshots &amp; UI</h2>
+                    <p class="section-subtitle">
+                        Example views of the interface and system components (no proprietary strategy logic shown).
+                    </p>
+                    <div class="project-gallery">
+                        <!-- Replace these with your real file names -->
+                        <img src="images/trading1.jpg" alt="Main trading dashboard UI">
+                        <img src="images/trading2.jpg" alt="Channel management and settings view">
+                        <img src="images/trading3.jpg" alt="Logs and status monitoring window">
+                        <img src="images/trading4.jpg" alt="Database or data view related to trades">
+                        <img src="images/trading5.jpg" alt="High-level architecture or system diagram">
+                    </div>
+                    <p class="gallery-note">
+                        Click any image to open it in a new tab for a closer look.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© <span id="year"></span> Brason Young. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="mailto:brason.young04@gmail.com">Email</a>
+            <a href="https://github.com/brasonyoung" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/brasonyoung" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple behavior: clicking a gallery image opens it in a new tab
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".project-gallery img").forEach(img => {
+            img.addEventListener("click", () => {
+                window.open(img.src, "_blank");
+            });
+        });
+    });
+</script>
+</body>
+</html>

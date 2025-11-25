@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom CNC Machine | Brason Young</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html">BY</a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="projects.html" class="nav-link active">Projects</a>
+            <a href="experience.html" class="nav-link">Experience</a>
+            <a href="about.html" class="nav-link">About</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <a href="projects.html" class="text-link">← Back to Projects</a>
+
+            <header class="project-detail-header">
+                <div>
+                    <h1 class="page-title">Custom Designed CNC Machine</h1>
+                    <p class="section-subtitle">
+                        From concept to a fully functional CNC machine: CAD design, fabrication, wiring, and G-code programming.
+                    </p>
+                </div>
+            </header>
+
+            <div class="project-detail-body">
+                <div class="project-detail-text">
+                    <h2>Overview</h2>
+                    <p>
+                        This project started as a simple idea: build my own CNC machine from scratch and learn every part
+                        of the process. I used Fusion 360 to design the full machine, including the frame, motion components,
+                        and mounting features for motors and electronics. After finalizing the design, I fabricated the
+                        parts myself and assembled the complete machine.
+                    </p>
+                    <p>
+                        Once the mechanical build was complete, I wired the stepper motors, drivers, power supply, and
+                        control electronics. I configured the controller, set up homing and limits, and learned G-code to
+                        create and run toolpaths. The machine is now capable of cutting parts to a high degree of accuracy
+                        and repeatability.
+                    </p>
+
+                    <h2>My Role &amp; Responsibilities</h2>
+                    <ul class="project-meta-list">
+                        <li>Concept development and requirements (work envelope, rigidity, materials).</li>
+                        <li>Full 3D CAD design in Fusion 360, including assemblies and key dimensions.</li>
+                        <li>Fabrication and assembly of mechanical components (frame, gantry, mounting plates, etc.).</li>
+                        <li>Wiring of stepper motors, drivers, power supply, and control electronics.</li>
+                        <li>Controller configuration, basic tuning, and G-code programming for test cuts.</li>
+                    </ul>
+
+                    <h2>Key Skills &amp; Tools</h2>
+                    <ul class="project-meta-list">
+                        <li>Fusion 360 – CAD modeling and design validation.</li>
+                        <li>Mechanical fabrication – cutting, drilling, tapping, and assembly.</li>
+                        <li>Electronics – stepper motors, drivers, wiring, and grounding.</li>
+                        <li>CNC concepts – work offsets, feeds/speeds, toolpaths, homing/limits.</li>
+                        <li>G-code – writing and editing simple programs to run parts.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-side">
+                    <h2>Photos</h2>
+                    <p class="section-subtitle">
+                        A few views of the machine from design to final assembly.
+                    </p>
+                    <div class="project-gallery">
+                        <!-- Replace these with your real file names -->
+                        <img src="images/cnc1.jpg" alt="CNC machine full view">
+                        <img src="images/cnc2.jpg" alt="Fusion 360 model of CNC machine">
+                        <img src="images/cnc3.jpg" alt="Close-up of CNC gantry and linear rails">
+                        <img src="images/cnc4.jpg" alt="Electronics wiring and control box">
+                        <img src="images/cnc5.jpg" alt="CNC machine cutting a test part">
+                    </div>
+                    <p class="gallery-note">
+                        Click any image to open it in a new tab for a closer look.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© <span id="year"></span> Brason Young. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="mailto:brason.young04@gmail.com">Email</a>
+            <a href="https://github.com/brasonyoung" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/brasonyoung" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple behavior: clicking a gallery image opens it in a new tab
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".project-gallery img").forEach(img => {
+            img.addEventListener("click", () => {
+                window.open(img.src, "_blank");
+            });
+        });
+    });
+</script>
+</body>
+</html>
