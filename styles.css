@@ -1,6 +1,8 @@
 @media (max-width: 640px) {
     .project-image {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: auto;
+        height: auto;
+        object-fit: contain;
     }
 }
 /* ===== Base Reset & Typography ===== */
