@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initSmoothScrolling();
     initProjectBanner();
+    initProjectGalleryLightbox();
 });
 
 /**
@@ -102,4 +103,75 @@ function initProjectBanner() {
     }
 
     startAutoRotate();
+}
+
+/**
+ * Lightbox for project detail galleries
+ */
+function initProjectGalleryLightbox() {
+    const galleryImages = document.querySelectorAll(".project-gallery img");
+    if (galleryImages.length === 0) return;
+
+    let lightbox = document.getElementById("image-lightbox");
+    let lightboxImage;
+    let lightboxCaption;
+
+    const ensureLightbox = () => {
+        if (lightbox) return;
+
+        lightbox = document.createElement("div");
+        lightbox.id = "image-lightbox";
+        lightbox.innerHTML = `
+            <div class="lightbox-backdrop" data-role="close"></div>
+            <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image preview">
+                <button class="lightbox-close" type="button" aria-label="Close image preview">&times;</button>
+                <img class="lightbox-image" src="" alt="">
+                <p class="lightbox-caption"></p>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+
+        lightboxImage = lightbox.querySelector(".lightbox-image");
+        lightboxCaption = lightbox.querySelector(".lightbox-caption");
+
+        const hide = () => hideLightbox();
+        lightbox.querySelector(".lightbox-close").addEventListener("click", hide);
+        lightbox.querySelector(".lightbox-backdrop").addEventListener("click", hide);
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.classList.contains("is-visible")) {
+                hideLightbox();
+            }
+        });
+    };
+
+    const showLightbox = (src, altText) => {
+        ensureLightbox();
+        if (!lightboxImage || !lightboxCaption) return;
+        lightboxImage.src = src;
+        lightboxImage.alt = altText || "";
+        lightboxCaption.textContent = altText || "";
+        lightbox.classList.add("is-visible");
+        document.body.classList.add("lightbox-open");
+    };
+
+    function hideLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove("is-visible");
+        document.body.classList.remove("lightbox-open");
+        if (lightboxImage) {
+            lightboxImage.src = "";
+            lightboxImage.alt = "";
+        }
+        if (lightboxCaption) {
+            lightboxCaption.textContent = "";
+        }
+    }
+
+    galleryImages.forEach((img) => {
+        img.addEventListener("click", (event) => {
+            event.preventDefault();
+            const { src, alt } = img;
+            showLightbox(src, alt);
+        });
+    });
 }

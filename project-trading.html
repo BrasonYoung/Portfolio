@@ -27,8 +27,8 @@
         <div class="container">
             <a href="projects.html" class="text-link">← Back to Projects</a>
 
-            <header class="project-detail-header">
-                <div>
+            <header class="project-detail-header project-trading-hero">
+                <div class="project-trading-hero-content">
                     <h1 class="page-title">AI-Powered Stock Trading Automation</h1>
                     <p class="section-subtitle">
                         An automated trading system that connects to IBKR, interprets public data with AI models,
@@ -49,7 +49,7 @@
                         For confidentiality, I don’t share the specific mechanics of the strategy or the exact signals
                         it uses. At a high level, the system ingests public data, runs it through AI models to interpret
                         the information, develops a trading plan, and then executes orders automatically in a very short
-                        amount of time. The focus of this project is on automation, reliability, and clean architecture.
+                        amount of time. The focus of this project is on automation, reliability, and performance.
                     </p>
 
                     <h2>High-Level Flow</h2>
@@ -59,15 +59,6 @@
                         <li>Uses AI models to interpret information and generate trading insights.</li>
                         <li>Translates insights into orders and sends them to IBKR via their API.</li>
                         <li>Monitors positions, basic risk parameters, and status through a custom Tkinter UI.</li>
-                    </ul>
-
-                    <h2>My Role &amp; Responsibilities</h2>
-                    <ul class="project-meta-list">
-                        <li>Designed the overall system architecture (data flow, modules, and integration points).</li>
-                        <li>Implemented the Python backend for API calls, data processing, and automation logic.</li>
-                        <li>Built a custom Tkinter-based UI for monitoring channels, status, and logs.</li>
-                        <li>Set up SQL tables for logging, configuration, and historical analysis.</li>
-                        <li>Integrated AI models to interpret public information and feed signals into the pipeline.</li>
                     </ul>
 
                     <h2>Key Skills &amp; Tools</h2>
@@ -83,18 +74,7 @@
                 <div class="project-detail-side">
                     <h2>Screenshots &amp; UI</h2>
                     <p class="section-subtitle">
-                        Example views of the interface and system components (no proprietary strategy logic shown).
-                    </p>
-                    <div class="project-gallery">
-                        <!-- Replace these with your real file names -->
-                        <img src="trading1.jpg" alt="Main trading dashboard UI">
-                        <img src="trading2.jpg" alt="Channel management and settings view">
-                        <img src="trading3.jpg" alt="Logs and status monitoring window">
-                        <img src="trading4.jpg" alt="Database or data view related to trades">
-                        <img src="trading5.jpg" alt="High-level architecture or system diagram">
-                    </div>
-                    <p class="gallery-note">
-                        Click any image to open it in a new tab for a closer look.
+                        Images coming soon. I’m preparing redacted visuals that highlight the workflow without exposing proprietary strategy details.
                     </p>
                 </div>
             </div>
@@ -114,15 +94,5 @@
     </div>
 </footer>
 
-<script>
-    // Simple behavior: clicking a gallery image opens it in a new tab
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".project-gallery img").forEach(img => {
-            img.addEventListener("click", () => {
-                window.open(img.src, "_blank");
-            });
-        });
-    });
-</script>
 </body>
 </html>

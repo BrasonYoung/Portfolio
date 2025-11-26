@@ -335,48 +335,11 @@ ul {
     width: 100%;
     height: clamp(160px, 240px, 400px);
     object-fit: cover;
+    object-position: top center;
     border-radius: 0.6rem;
     margin-bottom: 0.6rem;
     border: 1px solid rgba(148, 163, 254, 0.25);
     transition: height 0.2s ease;
-}
-
-
-/* ===== Resume Embed ===== */
-.resume-wrapper {
-    margin-top: 1.5rem;
-}
-
-.resume-embed {
-    border-radius: 1rem;
-    overflow: hidden;
-    border: 1px solid rgba(148, 163, 254, 0.35);
-    background: #020617;
-}
-
-.resume-embed iframe,
-.resume-embed object {
-    width: 100%;
-    height: 550px;
-    border: none;
-}
-
-.resume-mobile-note {
-    margin-top: 0.75rem;
-    color: #a5afc9;
-    font-size: 0.9rem;
-    display: none;
-}
-
-.resume-actions {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* ===== Projects Grid ===== */
-.projects-grid {
-    display: grid;
     gap: 1.5rem;
     margin-top: 1.75rem;
 }
@@ -718,15 +681,68 @@ ul {
         padding: 0.35rem 0.65rem;
     }
 
-    .stl-viewer {
-        height: 260px;
-    }
 }
 
 /* ===== Project Detail Pages ===== */
 .project-detail-header {
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
+}
+
+.project-cnc-hero {
+    position: relative;
+    padding: 3rem 2.5rem;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 254, 0.25);
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.75)),
+        url("cnc2.jpg") center/cover no-repeat;
+    box-shadow: 0 25px 55px rgba(15, 23, 42, 0.55);
+}
+
+.project-cnc-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(79, 70, 229, 0.3) 0%, rgba(7, 11, 28, 0.85) 55%, rgba(2, 6, 23, 0.95) 100%);
+    pointer-events: none;
+}
+
+.project-cnc-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 36rem;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.project-trading-hero {
+    position: relative;
+    padding: 3rem 2.5rem;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 254, 0.25);
+    background:
+        linear-gradient(135deg, rgba(13, 17, 36, 0.88), rgba(1, 7, 18, 0.75)),
+        url("trading1.jpg") center/cover no-repeat;
+    box-shadow: 0 25px 55px rgba(10, 16, 35, 0.55);
+}
+
+.project-trading-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(56, 189, 248, 0.32) 0%, rgba(7, 11, 28, 0.85) 55%, rgba(2, 6, 23, 0.95) 100%);
+    pointer-events: none;
+}
+
+.project-trading-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 36rem;
+    display: grid;
+    gap: 0.6rem;
 }
 
 .project-detail-body {
@@ -776,7 +792,7 @@ ul {
     border: 1px solid rgba(148, 163, 254, 0.5);
     cursor: pointer;
     object-fit: cover;
-    max-height: 170px;
+    height: 220px;
     width: 100%;
 }
 
@@ -791,44 +807,116 @@ ul {
     margin-top: 0.4rem;
 }
 
-.stl-viewer {
-    margin-top: 1rem;
-    border-radius: 0.8rem;
+/* ===== Image Lightbox ===== */
+body.lightbox-open {
     overflow: hidden;
-    border: 1px solid rgba(148, 163, 254, 0.35);
-    background: radial-gradient(circle at top, rgba(99, 102, 241, 0.18), rgba(2, 6, 23, 0.95));
-    height: 320px;
-    position: relative;
 }
 
-.stl-viewer canvas {
-    width: 100%;
-    height: 100%;
+#image-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 999;
+}
+
+#image-lightbox.is-visible {
     display: block;
 }
 
-.stl-viewer__fallback {
+#image-lightbox .lightbox-backdrop {
     position: absolute;
     inset: 0;
+    background: rgba(5, 8, 20, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+#image-lightbox .lightbox-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(95vw, 1200px);
+    height: min(95vh, 900px);
+    max-width: 95vw;
+    max-height: 95vh;
+    padding: 1.2rem;
+    background: rgba(9, 13, 28, 0.95);
+    border: 1px solid rgba(148, 163, 254, 0.25);
+    border-radius: 1rem;
     display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.7);
+    min-height: 0;
+    min-width: 0;
+}
+
+#image-lightbox .lightbox-image {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 0.75rem;
+    background: #0f172a;
+}
+
+#image-lightbox .lightbox-caption {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #cbd5ff;
+}
+
+#image-lightbox .lightbox-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #f5f7ff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #cbd5ff;
-    background: linear-gradient(180deg, rgba(5, 8, 20, 0.62), rgba(5, 8, 20, 0.82));
-    z-index: 2;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.stl-viewer__fallback a {
-    color: #a5b4fc;
-    text-decoration: underline;
+#image-lightbox .lightbox-close:hover {
+    background: rgba(129, 140, 248, 0.85);
+    transform: scale(1.05);
 }
 
-.stl-viewer__fallback a {
-    color: #a5b4fc;
-    text-decoration: underline;
+@media (max-width: 640px) {
+    #image-lightbox .lightbox-content {
+        padding: 0.9rem;
+        width: 96vw;
+        height: 96vh;
+        max-width: 96vw;
+        max-height: 96vh;
+    }
+
+    .project-cnc-hero {
+        padding: 2.2rem 1.4rem;
+        border-radius: 1rem;
+        background-position: center;
+    }
+
+    .project-cnc-hero-content {
+        max-width: none;
+    }
+
+    #image-lightbox .lightbox-caption {
+        font-size: 0.85rem;
+    }
+
+    #image-lightbox .lightbox-close {
+        width: 1.9rem;
+        height: 1.9rem;
+    }
 }
 
 /* Responsive for detail pages */
@@ -845,6 +933,20 @@ ul {
 @media (max-width: 640px) {
     .project-gallery {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project-gallery img {
+        height: 260px;
+    }
+
+    .project-trading-hero {
+        padding: 2.2rem 1.4rem;
+        border-radius: 1rem;
+        background-position: center;
+    }
+
+    .project-trading-hero-content {
+        max-width: none;
     }
 }
 
