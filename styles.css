@@ -224,6 +224,46 @@ ul {
     gap: 0.75rem;
 }
 
+/* ===== Resume Section ===== */
+.resume-wrapper {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.resume-embed {
+    border: 1px solid rgba(148, 163, 254, 0.2);
+    border-radius: 1rem;
+    background: rgba(8, 11, 26, 0.95);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+    overflow: hidden;
+}
+
+.resume-embed object,
+.resume-embed iframe {
+    width: 100%;
+    height: clamp(520px, 68vh, 860px);
+    display: block;
+    border: none;
+    background: #0f172a;
+}
+
+.resume-mobile-note {
+    display: none;
+    font-size: 0.9rem;
+    color: #9ca3af;
+    text-align: center;
+}
+
+.resume-actions {
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.resume-actions .btn {
+    min-width: 200px;
+}
+
 /* ===== Project Banner ===== */
 .project-banner {
     margin-top: 1.5rem;
@@ -651,6 +691,17 @@ ul {
 
     .hero-actions .btn {
         width: 100%;
+        justify-content: center;
+    }
+
+    .resume-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .resume-actions .btn {
+        width: 100%;
+        min-width: 0;
         justify-content: center;
     }
 
