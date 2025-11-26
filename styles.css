@@ -1,3 +1,43 @@
+.projects-grid {
+    display: grid;
+    gap: 1.8rem;
+}
+
+.project-card + .project-card {
+    margin-top: 0;
+}
+
+.resume-wrapper {
+    margin-top: 1.5rem;
+}
+
+.resume-embed {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 254, 0.35);
+    background: #020617;
+}
+
+.resume-embed iframe,
+.resume-embed object {
+    width: 100%;
+    height: 550px;
+    border: none;
+}
+
+.resume-mobile-note {
+    margin-top: 0.75rem;
+    color: #a5afc9;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.resume-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
 @media (max-width: 640px) {
     .project-image {
         aspect-ratio: auto;
@@ -224,37 +264,54 @@ ul {
     gap: 0.75rem;
 }
 
-/* ===== Resume Embed ===== */
+/* ===== Resume Section ===== */
 
-.resume-wrapper {
+/* ===== Project Banner ===== */
+.project-banner {
     margin-top: 1.5rem;
-}
-
-.resume-embed {
-    border-radius: 1rem;
+    position: relative;
+    border-radius: 1.2rem;
+    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.13), transparent 60%),
+                #020617;
+    border: 1px solid rgba(148, 163, 254, 0.25);
     overflow: hidden;
-    border: 1px solid rgba(148, 163, 254, 0.35);
-    background: #020617;
+    padding: 1.1rem 1rem;
 }
 
-.resume-embed iframe,
-.resume-embed object {
-    width: 100%;
-    height: 550px;
-    border: none;
-}
-
-.resume-mobile-note {
-    margin-top: 0.75rem;
-    color: #a5afc9;
-    font-size: 0.9rem;
-    display: none;
-}
-
-.resume-actions {
-    margin-top: 1rem;
+.banner-inner {
     display: flex;
-    justify-content: flex-start;
+    position: relative;
+    min-height: 150px;
+    z-index: 1;
+}
+
+.banner-slide {
+    flex: 1 0 100%;
+    opacity: 0;
+    transform: translateX(6%);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    position: absolute;
+    inset: 0;
+    padding: 0.3rem 2.8rem;
+    pointer-events: none;
+}
+
+.banner-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    pointer-events: auto;
+}
+
+.banner-slide h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.banner-slide p {
+    font-size: 0.95rem;
+    color: #cbd5ff;
+    margin-bottom: 0.6rem;
 }
 
 .banner-link {
@@ -283,6 +340,7 @@ ul {
     justify-content: center;
     font-size: 1.1rem;
     transition: background 0.18s ease, transform 0.12s ease;
+    z-index: 2;
 }
 
 .banner-control-prev {
@@ -330,11 +388,6 @@ ul {
     transition: height 0.2s ease;
     gap: 1.5rem;
     margin-top: 1.75rem;
-}
-
-.projects-grid {
-    display: grid;
-    gap: 1.8rem;
 }
 
 .project-card {
@@ -544,7 +597,7 @@ ul {
     }
 
     .projects-grid {
-        gap: 1.5rem;
+        gap: 1.6rem;
     }
 
     .about-layout {
@@ -604,7 +657,7 @@ ul {
     }
 
     .projects-grid {
-        gap: 1.3rem;
+        gap: 1.35rem;
     }
 
     .banner-slide {
@@ -653,6 +706,22 @@ ul {
     .hero-actions .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .resume-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .resume-actions .btn {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    .resume-mobile-note {
+        margin-inline: auto;
     }
 
     .resume-embed iframe,
