@@ -6,8 +6,6 @@
     <title>Custom CNC Machine | Brason Young</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -94,9 +92,10 @@
                     <p class="section-subtitle">
                         Explore a simplified 3MF of the CNC frame. Rotate and zoom to inspect details.
                     </p>
-                    <div class="stl-viewer">
-                        <!-- Replace models/cnc-machine.3mf with the path to your 3MF file -->
-                        <model-viewer src="cnc.3mf" alt="3D model of the CNC machine" camera-controls auto-rotate interaction-prompt="auto" exposure="1.1" shadow-intensity="0.8"></model-viewer>
+                    <div id="cnc-three-viewer" class="stl-viewer" data-model="cnc.3mf">
+                        <div class="stl-viewer__fallback">
+                            Loading interactive preview...
+                        </div>
                     </div>
                     <p class="gallery-note">
                         If the viewer doesn't load, make sure your 3MF file is saved at <code>models/cnc-machine.3mf</code>.
@@ -119,14 +118,115 @@
     </div>
 </footer>
 
+<script src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.159.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.159.0/examples/js/loaders/3MFLoader.js"></script>
 <script>
-    // Simple behavior: clicking a gallery image opens it in a new tab
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".project-gallery img").forEach(img => {
-            img.addEventListener("click", () => {
-                window.open(img.src, "_blank");
+    function initGalleryLightbox() {
+        document.querySelectorAll('.project-gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                window.open(img.src, '_blank');
             });
         });
+    }
+
+    function initCncViewer() {
+        const container = document.getElementById('cnc-three-viewer');
+        if (!container || typeof THREE === 'undefined') return;
+
+        const fallback = container.querySelector('.stl-viewer__fallback');
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+            45,
+            container.clientWidth / container.clientHeight || 1,
+            0.1,
+            2000
+        );
+        camera.position.set(200, 160, 200);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08;
+        controls.target.set(0, 0, 0);
+
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x1a1a2e, 1.1);
+        scene.add(hemiLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(160, 220, 120);
+        scene.add(dirLight);
+
+        const loader = new THREE.ThreeMFLoader();
+        const modelSrc = container.dataset.model || 'cnc.3mf';
+        loader.load(
+            modelSrc,
+            (object) => {
+                object.traverse(child => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        if (!child.material || child.material.color.equals(new THREE.Color(0x000000))) {
+                            child.material = new THREE.MeshStandardMaterial({ color: 0x9ca3af, metalness: 0.1, roughness: 0.6 });
+                        }
+                    }
+                });
+
+                const box = new THREE.Box3().setFromObject(object);
+                const center = box.getCenter(new THREE.Vector3());
+                object.position.sub(center);
+
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z) || 100;
+                const distance = maxDim * 2.2;
+                camera.position.set(distance, distance, distance);
+                controls.target.set(0, 0, 0);
+                controls.update();
+
+                scene.add(object);
+
+                if (fallback) {
+                    fallback.style.display = 'none';
+                }
+            },
+            undefined,
+            (error) => {
+                if (fallback) {
+                    fallback.innerHTML = `3D preview unavailable. <a href="${modelSrc}" target="_blank" rel="noopener">Download the model</a> instead.`;
+                    fallback.style.display = 'flex';
+                }
+                console.error('Failed to load 3MF model', error);
+            }
+        );
+
+        function onResize() {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            if (!width || !height) return;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        window.addEventListener('resize', onResize);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initGalleryLightbox();
+        initCncViewer();
     });
 </script>
 </body>
