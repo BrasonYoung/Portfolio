@@ -6,6 +6,8 @@
     <title>Custom CNC Machine | Brason Young</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -86,6 +88,18 @@
                     </div>
                     <p class="gallery-note">
                         Click any image to open it in a new tab for a closer look.
+                    </p>
+
+                    <h2>3D Model Preview</h2>
+                    <p class="section-subtitle">
+                        Explore a simplified 3MF of the CNC frame. Rotate and zoom to inspect details.
+                    </p>
+                    <div class="stl-viewer">
+                        <!-- Replace models/cnc-machine.3mf with the path to your 3MF file -->
+                        <model-viewer src="cnc.3mf" alt="3D model of the CNC machine" camera-controls auto-rotate interaction-prompt="auto" exposure="1.1" shadow-intensity="0.8"></model-viewer>
+                    </div>
+                    <p class="gallery-note">
+                        If the viewer doesn't load, make sure your 3MF file is saved at <code>models/cnc-machine.3mf</code>.
                     </p>
                 </div>
             </div>
